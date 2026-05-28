@@ -91,6 +91,7 @@ a {
 }
 
 .nav {
+  position: relative;
   min-height: 122px;
   display: flex;
   align-items: center;
@@ -99,18 +100,19 @@ a {
 }
 
 .logo img {
-  width: min(500px, 48vw);
+  width: min(455px, 42vw);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.05rem;
-  font-size: 0.92rem;
+  gap: 0.72rem;
+  font-size: 0.86rem;
   font-weight: 900;
 }
 
 .nav-links a {
+  white-space: nowrap;
   text-decoration: none;
 }
 
@@ -119,7 +121,7 @@ a {
 }
 
 .nav-action {
-  padding: 0.72rem 1rem;
+  padding: 0.68rem 0.86rem;
   color: #fff !important;
   background: var(--green);
   border-radius: var(--radius);
@@ -427,6 +429,16 @@ h3 {
   -webkit-line-clamp: 3;
 }
 
+.person-card .attorney-title {
+  display: block;
+  padding: 0 1rem 1rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1.25;
+  -webkit-line-clamp: unset;
+}
+
 .center {
   margin-top: 2rem;
   text-align: center;
@@ -435,6 +447,134 @@ h3 {
 .text-link {
   color: var(--gold-dark);
   font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.resource-list {
+  display: grid;
+  gap: 0;
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.resource-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.8rem 0 2.2rem;
+}
+
+.resource-jump a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 0.6rem 0.85rem;
+  color: #fff;
+  background: var(--green);
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.combined-section {
+  scroll-margin-top: 1rem;
+  margin-top: 2rem;
+}
+
+.resource-groups {
+  display: grid;
+  gap: 2rem;
+}
+
+.resource-group {
+  scroll-margin-top: 1rem;
+}
+
+.resource-group-head {
+  margin-bottom: 0.8rem;
+}
+
+.resource-group-head h2 {
+  margin-bottom: 0.45rem;
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+}
+
+.resource-group-head p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.resource-link {
+  display: block;
+  padding: 0.82rem 0;
+  border-bottom: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+}
+
+.resource-link:hover strong {
+  color: var(--gold-dark);
+}
+
+.resource-link strong {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+
+.office-info-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.office-info-panel h2 {
+  margin-bottom: 0.25rem;
+}
+
+.office-info-panel div {
+  min-width: 0;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.office-info-panel span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--gold-dark);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.office-info-panel p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.office-info-panel p a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.office-info-panel .button {
+  display: inline-flex;
+  width: 100%;
+  margin-top: 0.25rem;
+  color: #fff;
+  background: var(--green);
+  border-color: var(--green);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.office-info-panel .button:hover {
+  background: var(--blue);
+  border-color: var(--blue);
 }
 
 .quote-card {
@@ -486,48 +626,55 @@ h3 {
 
 .faq-list {
   display: grid;
-  gap: 2rem;
-}
-
-.faq-toc {
-  margin-bottom: 2rem;
-  padding: 1.25rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--muted);
-}
-
-.faq-toc h2 {
-  margin-bottom: 0.8rem;
-  font-size: 1.8rem;
-}
-
-.faq-toc ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem 1rem;
-  padding-left: 1.1rem;
-  margin: 0;
-}
-
-.faq-toc a {
-  color: var(--gold-dark);
-  font-weight: 900;
+  gap: 0.75rem;
 }
 
 .faq-item {
   scroll-margin-top: 1rem;
-  padding-bottom: 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.faq-item summary {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.15;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--gold-dark);
+  font-family: Inter, Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.faq-item[open] summary {
   border-bottom: 1px solid var(--line);
 }
 
-.faq-item:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
+.faq-item[open] summary::after {
+  content: "-";
 }
 
-.faq-item h2 {
-  margin-bottom: 0.9rem;
+.faq-answer {
+  padding: 0.2rem 1rem 1rem;
 }
 
 .profile-header {
@@ -552,6 +699,15 @@ h3 {
 .profile-header h2 {
   margin-bottom: 0.6rem;
   font-size: 2.35rem;
+}
+
+.profile-header .attorney-title {
+  margin: -0.25rem 0 0.45rem;
+  color: var(--gold-dark);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .video-panel {
@@ -632,6 +788,7 @@ h3 {
   margin-top: 0.65rem;
   color: var(--gold-dark);
   font-weight: 900;
+  overflow-wrap: anywhere;
 }
 
 .cta-band {
@@ -655,6 +812,71 @@ h3 {
   padding: 54px 0 26px;
   color: rgba(255, 255, 255, 0.74);
   background: #151a20;
+}
+
+.footer-actions {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  margin-bottom: 2.4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
+
+.footer-review {
+  color: var(--gold);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.footer-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.footer-pill {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 0.9rem;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.65rem;
+  font-weight: 800;
+}
+
+.facebook-button {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: #151a20 !important;
+  background: var(--gold);
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
 }
 
 .footer-grid {
@@ -688,7 +910,14 @@ h3 {
   font-size: 0.82rem;
 }
 
-@media (max-width: 900px) {
+.legal a {
+  display: inline;
+  margin-left: 0.45rem;
+  color: #fff;
+  font-weight: 900;
+}
+
+@media (max-width: 1040px) {
   .strip-inner {
     align-items: flex-start;
     flex-direction: column;
@@ -714,9 +943,9 @@ h3 {
 
   .nav-links {
     position: absolute;
-    left: 20px;
-    right: 20px;
-    top: 134px;
+    left: 0;
+    right: 0;
+    top: calc(100% - 1px);
     display: none;
     flex-direction: column;
     align-items: stretch;
@@ -772,7 +1001,7 @@ h3 {
   }
 
   .nav-links {
-    top: 122px;
+    top: calc(100% - 1px);
   }
 
   .hero-grid {
@@ -785,8 +1014,7 @@ h3 {
 
   .card-grid,
   .card-grid.people,
-  .testimonial-grid,
-  .faq-toc ul {
+  .testimonial-grid {
     grid-template-columns: 1fr;
   }
 
