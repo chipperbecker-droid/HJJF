@@ -359,6 +359,13 @@ h3 {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
+.info-card img[src$=".png"],
+.hero-bg img[src$=".png"] {
+  padding: 1rem;
+  object-fit: contain;
+  background: #f5f1e9;
+}
+
 .info-card span,
 .location-card span {
   display: block;
@@ -469,6 +476,25 @@ h3 {
 .article-card li {
   margin-bottom: 0.45rem;
   color: var(--ink-soft);
+}
+
+.faq-list {
+  display: grid;
+  gap: 2rem;
+}
+
+.faq-item {
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.faq-item h2 {
+  margin-bottom: 0.9rem;
 }
 
 .profile-header {
