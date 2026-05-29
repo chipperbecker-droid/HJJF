@@ -691,8 +691,16 @@ h3 {
 }
 
 .article-card h2 {
-  margin-top: 1.6rem;
+  margin: 1.8rem 0 0.85rem;
   font-size: 2rem;
+}
+
+.article-card ul + h2 {
+  margin-top: 2.4rem;
+}
+
+.article-card h2 + .faq-list {
+  margin-top: 1.05rem;
 }
 
 .article-card li {
