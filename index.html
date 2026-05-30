@@ -239,20 +239,22 @@
         const previous = carousel.querySelector("[data-testimonial-prev]");
         const next = carousel.querySelector("[data-testimonial-next]");
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let activeCard = 0;
         let activePage = 0;
         let pageCount = 1;
         let cardsPerPage = 3;
-        let physicalPage = 1;
+        let cloneCount = 3;
+        let physicalCard = 3;
         let rotation;
         let dragStartX = 0;
         let dragOffset = 0;
         let isDragging = false;
 
-        const getPageWidth = () => viewport.clientWidth + 16;
+        const getCardOffset = (index) => track.children[index].offsetLeft;
 
-        const setTrackPosition = (page, animate = true) => {
+        const setTrackPosition = (index, animate = true) => {
           track.classList.toggle("is-resetting", !animate);
-          track.style.transform = `translateX(-${page * getPageWidth()}px)`;
+          track.style.transform = `translate3d(-${getCardOffset(index)}px, 0, 0)`;
           if (!animate) {
             track.getBoundingClientRect();
             track.classList.remove("is-resetting");
@@ -266,6 +268,7 @@
         };
 
         const updateControls = () => {
+          activePage = Math.min(Math.floor(activeCard / cardsPerPage), pageCount - 1);
           counter.textContent = `${activePage + 1} / ${pageCount}`;
           [...dotsContainer.children].forEach((dot, dotIndex) => {
             const isActive = dotIndex === activePage;
@@ -274,18 +277,24 @@
           });
         };
 
-        const showPage = (index) => {
-          activePage = (index + pageCount) % pageCount;
-          physicalPage = index < 0 ? 0 : index >= pageCount ? pageCount + 1 : activePage + 1;
+        const moveCards = (amount) => {
+          activeCard = (activeCard + amount + cards.length) % cards.length;
+          physicalCard += amount;
           updateControls();
-          setTrackPosition(physicalPage);
+          setTrackPosition(physicalCard);
+        };
+
+        const showPage = (index) => {
+          activeCard = Math.min(index * cardsPerPage, cards.length - 1);
+          physicalCard = cloneCount + activeCard;
+          updateControls();
+          setTrackPosition(physicalCard);
         };
 
         const buildDots = () => {
           cardsPerPage = getCardsPerPage();
+          cloneCount = cardsPerPage;
           pageCount = Math.ceil(cards.length / cardsPerPage);
-          activePage = Math.min(activePage, pageCount - 1);
-          const cloneCount = cardsPerPage;
           track.querySelectorAll("[data-testimonial-clone]").forEach((card) => card.remove());
           cards.slice(-cloneCount).reverse().forEach((card) => {
             const clone = card.cloneNode(true);
@@ -297,7 +306,7 @@
             clone.dataset.testimonialClone = "true";
             track.append(clone);
           });
-          physicalPage = activePage + 1;
+          physicalCard = cloneCount + activeCard;
           dotsContainer.replaceChildren();
           for (let index = 0; index < pageCount; index += 1) {
             const dot = document.createElement("button");
@@ -311,21 +320,21 @@
             dotsContainer.append(dot);
           }
           updateControls();
-          setTrackPosition(physicalPage, false);
+          setTrackPosition(physicalCard, false);
         };
 
         const startRotation = () => {
           if (reduceMotion) return;
           window.clearInterval(rotation);
-          rotation = window.setInterval(() => showPage(activePage + 1), 7000);
+          rotation = window.setInterval(() => moveCards(1), 7000);
         };
 
         previous.addEventListener("click", () => {
-          showPage(activePage - 1);
+          moveCards(-1);
           startRotation();
         });
         next.addEventListener("click", () => {
-          showPage(activePage + 1);
+          moveCards(1);
           startRotation();
         });
         carousel.addEventListener("mouseenter", () => window.clearInterval(rotation));
@@ -337,7 +346,7 @@
           event.preventDefault();
           isDragging = true;
           dragStartX = event.clientX;
-          dragOffset = physicalPage * getPageWidth();
+          dragOffset = getCardOffset(physicalCard);
           track.classList.add("is-dragging");
           viewport.setPointerCapture(event.pointerId);
           window.clearInterval(rotation);
@@ -345,7 +354,7 @@
         viewport.addEventListener("pointermove", (event) => {
           if (!isDragging) return;
           const movement = event.clientX - dragStartX;
-          track.style.transform = `translateX(${movement - dragOffset}px)`;
+          track.style.transform = `translate3d(${movement - dragOffset}px, 0, 0)`;
         });
         viewport.addEventListener("pointerup", (event) => {
           if (!isDragging) return;
@@ -354,9 +363,9 @@
           track.classList.remove("is-dragging");
           viewport.releasePointerCapture(event.pointerId);
           if (Math.abs(movement) > 60) {
-            showPage(activePage + (movement < 0 ? 1 : -1));
+            moveCards(movement < 0 ? 1 : -1);
           } else {
-            showPage(activePage);
+            setTrackPosition(physicalCard);
           }
           startRotation();
         });
@@ -364,16 +373,16 @@
           if (!isDragging) return;
           isDragging = false;
           track.classList.remove("is-dragging");
-          showPage(activePage);
+          setTrackPosition(physicalCard);
           startRotation();
         });
         track.addEventListener("transitionend", () => {
-          if (physicalPage === 0) {
-            physicalPage = pageCount;
-            setTrackPosition(physicalPage, false);
-          } else if (physicalPage === pageCount + 1) {
-            physicalPage = 1;
-            setTrackPosition(physicalPage, false);
+          if (physicalCard < cloneCount) {
+            physicalCard += cards.length;
+            setTrackPosition(physicalCard, false);
+          } else if (physicalCard >= cloneCount + cards.length) {
+            physicalCard -= cards.length;
+            setTrackPosition(physicalCard, false);
           }
         });
         window.addEventListener("resize", buildDots);
