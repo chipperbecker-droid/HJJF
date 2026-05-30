@@ -356,7 +356,7 @@
           rotation = window.setInterval(() => {
             if (activeCard >= maxCard) autoplayDirection = -1;
             if (activeCard <= 0) autoplayDirection = 1;
-            goToCard(activeCard + autoplayDirection);
+            goToCard(activeCard + autoplayDirection * cardsPerPage);
           }, 7000);
         };
 
