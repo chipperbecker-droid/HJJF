@@ -90,8 +90,9 @@
         <div class="container">
           <div class="section-head"><p class="eyebrow">Testimonials</p><h2>Client Feedback.</h2></div>
           <div class="testimonial-carousel" aria-label="Client testimonials">
-            <div class="testimonial-slide testimonial-grid" data-testimonial-slide>
-              <figure class="testimonial-card testimonial-featured">
+            <div class="testimonial-viewport">
+              <div class="testimonial-track" data-testimonial-track>
+              <figure class="testimonial-card">
                 <blockquote>“We have been using Hudson Jones for real estate closings since we purchased our first property in 1999. The process is always smooth, timely, congenial and meticulous. ... We have 100% confidence in the quality of representation, and highly recommend for all legal needs.”</blockquote>
                 <figcaption>Lyn S.</figcaption>
               </figure>
@@ -107,14 +108,12 @@
                 <blockquote>“Always have a great experience with the attorneys at Hudson Jones. Mike Rushe has been a great settlement attorney!”</blockquote>
                 <figcaption>Lydia R.</figcaption>
               </figure>
-            </div>
-            <div class="testimonial-slide testimonial-grid" data-testimonial-slide hidden>
-              <figure class="testimonial-card testimonial-featured">
+              <figure class="testimonial-card">
                 <blockquote>“Mr Becker has handled many projects for us. He has prepared our wills, settled real estate purchases, assisted with unclaimed property and advised us on several issues. We have recommended Mr Becker to friends and family, they were completely satisfied with his services as well.”</blockquote>
                 <figcaption>Dayna</figcaption>
               </figure>
               <figure class="testimonial-card">
-                <blockquote>“I hired him to handle a real estate settlement and he and his office made the process smooth and easy.”</blockquote>
+                <blockquote>“I hired [Christopher M. Holmon] to handle a real estate settlement and he and his office made the process smooth and easy.”</blockquote>
                 <figcaption>Paul</figcaption>
               </figure>
               <figure class="testimonial-card">
@@ -125,13 +124,60 @@
                 <blockquote>“I had a great experience with Mike and Melinda they were thorough and completed everything in a timely manner”</blockquote>
                 <figcaption>binita shah</figcaption>
               </figure>
+              <figure class="testimonial-card">
+                <blockquote>“I have worked with Mike Rushe and Angelica Mamani and both attorneys have been fantastic! The support staff has been top notch as well (Linda….you’re the best!!!!!!)”</blockquote>
+                <figcaption>Ryan L.</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Michael is always available to assist and answer any questions. He has handled all my home settlements professionally and swiftly.”</blockquote>
+                <figcaption>Caroline</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Excellent to work with from my mortgage to my will. Mike was very Dessicive and timely with his work.”</blockquote>
+                <figcaption>Matthew</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“I have been working with Hudson Jones Jaywork and Fisher for 20 years for real estate closings. Year in year out they always provide a smooth transaction and expert knowledge.”</blockquote>
+                <figcaption>Pete Green Mortgage</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“I've counted on Mike for several years to handle all of my legal needs. Running a mortgage company, I have interactions with many attorneys every month. Mike sets himself apart from other attorneys by being accessible, responsive, and gives me the same advise and effort as if I am family.”</blockquote>
+                <figcaption>Timothy</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“As a local Real Estate broker who uses multiple attorneys locally, I would have to say this firm is loaded with professionals that get the job done in a timely and professional fashion. I have also used Mike Rushe for litigation and seen him perform in court and have been very impressed.”</blockquote>
+                <figcaption>John Welcome</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Had a great experience working with Chad Meredith. He provided excellent service, great advice and was able to work well with the Rehoboth City government. I highly recommend him for both his skill set, local savvy, and people skills.”</blockquote>
+                <figcaption>Edward Bieber</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Chad Meredith at Hudson Jones recently worked with me with a settlement at their Rehoboth Beach office. Also, Chad to the time to provide me valuable legal advice regarding the pros and cons between LLCs, joint tenancy with my adult children or single tenancy. Lisa Wingo is very knowledgeable about Delaware laws regarding settlement and everyone in the office was wonderful. I highly recommend Hudson Jones to anyone who is buying a house in Delaware.”</blockquote>
+                <figcaption>Mary Parvis</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Michael Rushe and all of the staff are very helpful and knowledgeable.”</blockquote>
+                <figcaption>Andy Ryan</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“From start to finish, our experience with Hudson-Jones was professional, efficient, and pain-free. We’ve handled several real estate settlements at this firm over the past 20 years and each case has been a positive experience.”</blockquote>
+                <figcaption>James Johnson</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Always very efficient and get it on time. Definitely recommend”</blockquote>
+                <figcaption>Terrenna Giles Brown</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Hudson, Jones, Jaywork, and Fisher always handles my needs with professionalism and expediency. I never hesitate to send a client there because I know everything will be handled right the first time!”</blockquote>
+                <figcaption>Matthew Sliwa</figcaption>
+              </figure>
+              </div>
             </div>
             <div class="testimonial-controls">
               <button class="testimonial-arrow" type="button" data-testimonial-prev aria-label="Show previous testimonials">&#8249;</button>
-              <div class="testimonial-dots" aria-label="Choose testimonial group">
-                <button class="testimonial-dot is-active" type="button" data-testimonial-dot="0" aria-label="Show testimonials 1 through 4" aria-current="true"></button>
-                <button class="testimonial-dot" type="button" data-testimonial-dot="1" aria-label="Show testimonials 5 through 8"></button>
-              </div>
+              <div class="testimonial-dots" data-testimonial-dots aria-label="Choose testimonial group"></div>
+              <span class="testimonial-counter" data-testimonial-counter aria-live="polite"></span>
               <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Show next testimonials">&#8250;</button>
             </div>
           </div>
@@ -191,50 +237,77 @@
         const carousel = document.querySelector(".testimonial-carousel");
         if (!carousel) return;
 
-        const slides = [...carousel.querySelectorAll("[data-testimonial-slide]")];
-        const dots = [...carousel.querySelectorAll("[data-testimonial-dot]")];
+        const track = carousel.querySelector("[data-testimonial-track]");
+        const cards = [...track.querySelectorAll(".testimonial-card")];
+        const dotsContainer = carousel.querySelector("[data-testimonial-dots]");
+        const counter = carousel.querySelector("[data-testimonial-counter]");
+        const viewport = carousel.querySelector(".testimonial-viewport");
         const previous = carousel.querySelector("[data-testimonial-prev]");
         const next = carousel.querySelector("[data-testimonial-next]");
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        let activeSlide = 0;
+        let activePage = 0;
+        let pageCount = 1;
+        let cardsPerPage = 3;
         let rotation;
 
-        const showSlide = (index) => {
-          activeSlide = (index + slides.length) % slides.length;
-          slides.forEach((slide, slideIndex) => {
-            slide.hidden = slideIndex !== activeSlide;
-          });
-          dots.forEach((dot, dotIndex) => {
-            const isActive = dotIndex === activeSlide;
+        const getCardsPerPage = () => {
+          if (window.innerWidth <= 620) return 1;
+          if (window.innerWidth <= 900) return 2;
+          return 3;
+        };
+
+        const showPage = (index) => {
+          activePage = (index + pageCount) % pageCount;
+          const targetCard = cards[activePage * cardsPerPage];
+          const offset = Math.min(targetCard.offsetLeft, track.scrollWidth - viewport.clientWidth);
+          track.style.transform = `translateX(-${offset}px)`;
+          counter.textContent = `${activePage + 1} / ${pageCount}`;
+          [...dotsContainer.children].forEach((dot, dotIndex) => {
+            const isActive = dotIndex === activePage;
             dot.classList.toggle("is-active", isActive);
             dot.setAttribute("aria-current", isActive ? "true" : "false");
           });
         };
 
+        const buildDots = () => {
+          cardsPerPage = getCardsPerPage();
+          pageCount = Math.ceil(cards.length / cardsPerPage);
+          activePage = Math.min(activePage, pageCount - 1);
+          dotsContainer.replaceChildren();
+          for (let index = 0; index < pageCount; index += 1) {
+            const dot = document.createElement("button");
+            dot.className = "testimonial-dot";
+            dot.type = "button";
+            dot.setAttribute("aria-label", `Show testimonial group ${index + 1} of ${pageCount}`);
+            dot.addEventListener("click", () => {
+              showPage(index);
+              startRotation();
+            });
+            dotsContainer.append(dot);
+          }
+          showPage(activePage);
+        };
+
         const startRotation = () => {
           if (reduceMotion) return;
           window.clearInterval(rotation);
-          rotation = window.setInterval(() => showSlide(activeSlide + 1), 6500);
+          rotation = window.setInterval(() => showPage(activePage + 1), 7000);
         };
 
         previous.addEventListener("click", () => {
-          showSlide(activeSlide - 1);
+          showPage(activePage - 1);
           startRotation();
         });
         next.addEventListener("click", () => {
-          showSlide(activeSlide + 1);
+          showPage(activePage + 1);
           startRotation();
-        });
-        dots.forEach((dot) => {
-          dot.addEventListener("click", () => {
-            showSlide(Number(dot.dataset.testimonialDot));
-            startRotation();
-          });
         });
         carousel.addEventListener("mouseenter", () => window.clearInterval(rotation));
         carousel.addEventListener("mouseleave", startRotation);
         carousel.addEventListener("focusin", () => window.clearInterval(rotation));
         carousel.addEventListener("focusout", startRotation);
+        window.addEventListener("resize", buildDots);
+        buildDots();
         startRotation();
       })();
     </script>
