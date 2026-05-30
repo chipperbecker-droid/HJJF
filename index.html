@@ -242,14 +242,21 @@
         let activePage = 0;
         let pageCount = 1;
         let cardsPerPage = 3;
+        let physicalPage = 1;
         let rotation;
         let dragStartX = 0;
         let dragOffset = 0;
         let isDragging = false;
 
-        const getPageOffset = (index) => {
-          const targetCard = cards[index * cardsPerPage];
-          return Math.min(targetCard.offsetLeft, track.scrollWidth - viewport.clientWidth);
+        const getPageWidth = () => viewport.clientWidth + 16;
+
+        const setTrackPosition = (page, animate = true) => {
+          track.classList.toggle("is-resetting", !animate);
+          track.style.transform = `translateX(-${page * getPageWidth()}px)`;
+          if (!animate) {
+            track.getBoundingClientRect();
+            track.classList.remove("is-resetting");
+          }
         };
 
         const getCardsPerPage = () => {
@@ -258,10 +265,7 @@
           return 3;
         };
 
-        const showPage = (index) => {
-          activePage = (index + pageCount) % pageCount;
-          const offset = getPageOffset(activePage);
-          track.style.transform = `translateX(-${offset}px)`;
+        const updateControls = () => {
           counter.textContent = `${activePage + 1} / ${pageCount}`;
           [...dotsContainer.children].forEach((dot, dotIndex) => {
             const isActive = dotIndex === activePage;
@@ -270,10 +274,30 @@
           });
         };
 
+        const showPage = (index) => {
+          activePage = (index + pageCount) % pageCount;
+          physicalPage = index < 0 ? 0 : index >= pageCount ? pageCount + 1 : activePage + 1;
+          updateControls();
+          setTrackPosition(physicalPage);
+        };
+
         const buildDots = () => {
           cardsPerPage = getCardsPerPage();
           pageCount = Math.ceil(cards.length / cardsPerPage);
           activePage = Math.min(activePage, pageCount - 1);
+          const cloneCount = cardsPerPage;
+          track.querySelectorAll("[data-testimonial-clone]").forEach((card) => card.remove());
+          cards.slice(-cloneCount).reverse().forEach((card) => {
+            const clone = card.cloneNode(true);
+            clone.dataset.testimonialClone = "true";
+            track.prepend(clone);
+          });
+          cards.slice(0, cloneCount).forEach((card) => {
+            const clone = card.cloneNode(true);
+            clone.dataset.testimonialClone = "true";
+            track.append(clone);
+          });
+          physicalPage = activePage + 1;
           dotsContainer.replaceChildren();
           for (let index = 0; index < pageCount; index += 1) {
             const dot = document.createElement("button");
@@ -286,7 +310,8 @@
             });
             dotsContainer.append(dot);
           }
-          showPage(activePage);
+          updateControls();
+          setTrackPosition(physicalPage, false);
         };
 
         const startRotation = () => {
@@ -312,7 +337,7 @@
           event.preventDefault();
           isDragging = true;
           dragStartX = event.clientX;
-          dragOffset = getPageOffset(activePage);
+          dragOffset = physicalPage * getPageWidth();
           track.classList.add("is-dragging");
           viewport.setPointerCapture(event.pointerId);
           window.clearInterval(rotation);
@@ -341,6 +366,15 @@
           track.classList.remove("is-dragging");
           showPage(activePage);
           startRotation();
+        });
+        track.addEventListener("transitionend", () => {
+          if (physicalPage === 0) {
+            physicalPage = pageCount;
+            setTrackPosition(physicalPage, false);
+          } else if (physicalPage === pageCount + 1) {
+            physicalPage = 1;
+            setTrackPosition(physicalPage, false);
+          }
         });
         window.addEventListener("resize", buildDots);
         buildDots();
