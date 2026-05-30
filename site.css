@@ -300,6 +300,57 @@ h3 {
   align-items: start;
 }
 
+.attorney-bridge {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.attorney-bridge p {
+  max-width: 620px;
+  color: var(--ink-soft);
+  font-size: 1.03rem;
+}
+
+.attorney-bridge-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.attorney-bridge-panel a {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.15rem 1.25rem;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgba(23, 32, 43, 0.06);
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.attorney-bridge-panel a:hover {
+  border-color: rgba(184, 135, 79, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 42px rgba(23, 32, 43, 0.1);
+}
+
+.attorney-bridge-panel span {
+  color: var(--gold-dark);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.attorney-bridge-panel strong {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.75rem;
+  line-height: 1.05;
+}
+
 .split p,
 .article-card p,
 .info-card p,
@@ -793,11 +844,16 @@ h3 {
 
 .testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: 1rem;
+  align-items: stretch;
 }
 
 .testimonial-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 0;
   padding: 1.45rem;
   border: 1px solid var(--line);
@@ -806,10 +862,23 @@ h3 {
   box-shadow: 0 10px 30px rgba(23, 32, 43, 0.06);
 }
 
+.testimonial-featured {
+  grid-row: span 3;
+  padding: 1.8rem;
+  background: linear-gradient(135deg, #ffffff, #fbf7ef);
+}
+
 .testimonial-card blockquote {
   margin: 0;
   color: var(--ink-soft);
   font-size: 1.05rem;
+}
+
+.testimonial-featured blockquote {
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(1.65rem, 3vw, 2.45rem);
+  line-height: 1.12;
 }
 
 .testimonial-card figcaption {
@@ -1006,6 +1075,7 @@ h3 {
 
   .hero-grid,
   .split,
+  .attorney-bridge,
   .content-grid,
   .cta-grid,
   .office-contact-section,
@@ -1065,6 +1135,10 @@ h3 {
   .card-grid.people,
   .testimonial-grid {
     grid-template-columns: 1fr;
+  }
+
+  .testimonial-featured {
+    grid-row: auto;
   }
 
   .section {

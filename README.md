@@ -72,4 +72,19 @@ The site includes:
 - Privacy policy
 - Sitemap
 
-External links such as Google Maps, Facebook, review links, and official Delaware resource links are intentionally external. Practice-area images are linked to local files in the `assets` folder.
+External links such as Google Maps, Facebook, and official Delaware resource links are intentionally external. Practice-area images are linked to local files in the `assets` folder.
+
+## Maintenance Notes
+
+- Individual attorney email values are intentionally omitted from attorney bio pages. Use the generic firm email, `info@delawarelaw.com`, for public contact points unless attorney-specific publication preferences change.
+- The Careers page should direct submissions to `info@delawarelaw.com`.
+- The Real Estate practice-area image uses `assets/real-estate-closing.jpg`. The older `assets/real-estate.jpg` file is retained in the asset folder but should not be used for current Real Estate page/card imagery.
+- The old external review platform link has been removed and should not be reintroduced unless the firm approves a new review workflow.
+
+## Pre-Deployment Check
+
+Before deploying changes, run a quick static QA pass:
+
+- Confirm local `href` and `src` paths resolve.
+- Search for outdated review-platform references, CGI references, and unintended individual attorney email values.
+- Spot-check the homepage, attorney pages, practice-area pages, Careers page, and Contact page on desktop and mobile widths.
