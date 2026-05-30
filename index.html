@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
     <link rel="stylesheet" href="./site.css?v=20260530-1">
     <style>
-      .testimonial-viewport { overflow: hidden; }
+      .testimonial-viewport { overflow-x: auto; overflow-y: hidden; }
       .testimonial-track { display: flex; gap: 1rem; }
       .testimonial-track .testimonial-card { flex: 0 0 calc((100% - 2rem) / 3); }
       @media (max-width: 900px) {
@@ -244,21 +244,19 @@
         let pageCount = 1;
         let cardsPerPage = 3;
         let cloneCount = 3;
-        let physicalCard = 3;
         let rotation;
-        let dragStartX = 0;
-        let dragOffset = 0;
-        let isDragging = false;
+        let scrollTimer;
+        let mouseStartX = 0;
+        let mouseStartScroll = 0;
+        let isMouseDragging = false;
 
         const getCardOffset = (index) => track.children[index].offsetLeft;
 
-        const setTrackPosition = (index, animate = true) => {
-          track.classList.toggle("is-resetting", !animate);
-          track.style.transform = `translate3d(-${getCardOffset(index)}px, 0, 0)`;
-          if (!animate) {
-            track.getBoundingClientRect();
-            track.classList.remove("is-resetting");
-          }
+        const scrollToCard = (index, smooth = true) => {
+          viewport.scrollTo({
+            left: getCardOffset(index),
+            behavior: smooth && !reduceMotion ? "smooth" : "auto"
+          });
         };
 
         const getCardsPerPage = () => {
@@ -279,16 +277,14 @@
 
         const moveCards = (amount) => {
           activeCard = (activeCard + amount + cards.length) % cards.length;
-          physicalCard += amount;
           updateControls();
-          setTrackPosition(physicalCard);
+          scrollToCard(cloneCount + activeCard);
         };
 
         const showPage = (index) => {
           activeCard = Math.min(index * cardsPerPage, cards.length - 1);
-          physicalCard = cloneCount + activeCard;
           updateControls();
-          setTrackPosition(physicalCard);
+          scrollToCard(cloneCount + activeCard);
         };
 
         const buildDots = () => {
@@ -306,7 +302,6 @@
             clone.dataset.testimonialClone = "true";
             track.append(clone);
           });
-          physicalCard = cloneCount + activeCard;
           dotsContainer.replaceChildren();
           for (let index = 0; index < pageCount; index += 1) {
             const dot = document.createElement("button");
@@ -320,7 +315,7 @@
             dotsContainer.append(dot);
           }
           updateControls();
-          setTrackPosition(physicalCard, false);
+          scrollToCard(cloneCount + activeCard, false);
         };
 
         const startRotation = () => {
@@ -342,48 +337,43 @@
         carousel.addEventListener("focusin", () => window.clearInterval(rotation));
         carousel.addEventListener("focusout", startRotation);
         viewport.addEventListener("pointerdown", (event) => {
-          if (event.pointerType === "mouse" && event.button !== 0) return;
+          if (event.pointerType !== "mouse" || event.button !== 0) return;
           event.preventDefault();
-          isDragging = true;
-          dragStartX = event.clientX;
-          dragOffset = getCardOffset(physicalCard);
-          track.classList.add("is-dragging");
+          isMouseDragging = true;
+          mouseStartX = event.clientX;
+          mouseStartScroll = viewport.scrollLeft;
           viewport.setPointerCapture(event.pointerId);
           window.clearInterval(rotation);
         });
         viewport.addEventListener("pointermove", (event) => {
-          if (!isDragging) return;
-          const movement = event.clientX - dragStartX;
-          track.style.transform = `translate3d(${movement - dragOffset}px, 0, 0)`;
+          if (!isMouseDragging) return;
+          viewport.scrollLeft = mouseStartScroll - (event.clientX - mouseStartX);
         });
         viewport.addEventListener("pointerup", (event) => {
-          if (!isDragging) return;
-          const movement = event.clientX - dragStartX;
-          isDragging = false;
-          track.classList.remove("is-dragging");
+          if (!isMouseDragging) return;
+          isMouseDragging = false;
           viewport.releasePointerCapture(event.pointerId);
-          if (Math.abs(movement) > 60) {
-            moveCards(movement < 0 ? 1 : -1);
-          } else {
-            setTrackPosition(physicalCard);
-          }
           startRotation();
         });
         viewport.addEventListener("pointercancel", () => {
-          if (!isDragging) return;
-          isDragging = false;
-          track.classList.remove("is-dragging");
-          setTrackPosition(physicalCard);
+          isMouseDragging = false;
           startRotation();
         });
-        track.addEventListener("transitionend", () => {
-          if (physicalCard < cloneCount) {
-            physicalCard += cards.length;
-            setTrackPosition(physicalCard, false);
-          } else if (physicalCard >= cloneCount + cards.length) {
-            physicalCard -= cards.length;
-            setTrackPosition(physicalCard, false);
-          }
+        viewport.addEventListener("scroll", () => {
+          window.clearTimeout(scrollTimer);
+          scrollTimer = window.setTimeout(() => {
+            const cardWidth = track.children[1].offsetLeft - track.children[0].offsetLeft;
+            let physicalCard = Math.round(viewport.scrollLeft / cardWidth);
+            if (physicalCard < cloneCount) {
+              physicalCard += cards.length;
+              scrollToCard(physicalCard, false);
+            } else if (physicalCard >= cloneCount + cards.length) {
+              physicalCard -= cards.length;
+              scrollToCard(physicalCard, false);
+            }
+            activeCard = (physicalCard - cloneCount + cards.length) % cards.length;
+            updateControls();
+          }, 120);
         });
         window.addEventListener("resize", buildDots);
         buildDots();
