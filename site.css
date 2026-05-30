@@ -846,6 +846,7 @@ h3 {
   overflow: hidden;
   cursor: grab;
   touch-action: pan-y;
+  user-select: none;
 }
 
 .testimonial-track {
