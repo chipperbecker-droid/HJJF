@@ -249,6 +249,7 @@
         let mouseStartX = 0;
         let mouseStartScroll = 0;
         let isMouseDragging = false;
+        let isSettling = false;
 
         const getCardOffset = (index) => track.children[index].offsetLeft;
 
@@ -257,6 +258,26 @@
             left: getCardOffset(index),
             behavior: smooth && !reduceMotion ? "smooth" : "auto"
           });
+        };
+
+        const settleCarousel = (smooth = true) => {
+          if (isSettling) return;
+          const cardWidth = track.children[1].offsetLeft - track.children[0].offsetLeft;
+          let physicalCard = Math.round(viewport.scrollLeft / cardWidth);
+          if (physicalCard < cloneCount) {
+            physicalCard += cards.length;
+            scrollToCard(physicalCard, false);
+          } else if (physicalCard >= cloneCount + cards.length) {
+            physicalCard -= cards.length;
+            scrollToCard(physicalCard, false);
+          }
+          activeCard = (physicalCard - cloneCount + cards.length) % cards.length;
+          updateControls();
+          isSettling = true;
+          scrollToCard(physicalCard, smooth);
+          window.setTimeout(() => {
+            isSettling = false;
+          }, smooth && !reduceMotion ? 360 : 0);
         };
 
         const getCardsPerPage = () => {
@@ -353,26 +374,18 @@
           if (!isMouseDragging) return;
           isMouseDragging = false;
           viewport.releasePointerCapture(event.pointerId);
+          settleCarousel();
           startRotation();
         });
         viewport.addEventListener("pointercancel", () => {
           isMouseDragging = false;
+          settleCarousel();
           startRotation();
         });
         viewport.addEventListener("scroll", () => {
           window.clearTimeout(scrollTimer);
           scrollTimer = window.setTimeout(() => {
-            const cardWidth = track.children[1].offsetLeft - track.children[0].offsetLeft;
-            let physicalCard = Math.round(viewport.scrollLeft / cardWidth);
-            if (physicalCard < cloneCount) {
-              physicalCard += cards.length;
-              scrollToCard(physicalCard, false);
-            } else if (physicalCard >= cloneCount + cards.length) {
-              physicalCard -= cards.length;
-              scrollToCard(physicalCard, false);
-            }
-            activeCard = (physicalCard - cloneCount + cards.length) % cards.length;
-            updateControls();
+            if (!isMouseDragging) settleCarousel();
           }, 120);
         });
         window.addEventListener("resize", buildDots);

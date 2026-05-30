@@ -848,7 +848,7 @@ h3 {
   cursor: grab;
   scrollbar-width: none;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   touch-action: pan-y;
   user-select: none;
 }
