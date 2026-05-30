@@ -89,39 +89,51 @@
       <section class="section muted">
         <div class="container">
           <div class="section-head"><p class="eyebrow">Testimonials</p><h2>Client Feedback.</h2></div>
-          <div class="testimonial-grid">
-            <figure class="testimonial-card testimonial-featured">
-              <blockquote>“We have been using Hudson Jones for real estate closings since we purchased our first property in 1999. The process is always smooth, timely, congenial and meticulous. ... We have 100% confidence in the quality of representation, and highly recommend for all legal needs.”</blockquote>
-              <figcaption>Lyn S.<span>Source: DelawareLaw.com</span></figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <blockquote>“Jay Becker is without a doubt the most informative, professional, courteous, results oriented attorney I've ever had the pleasure to deal with. I trust him completely to handle all aspects of my Real Estate transactions and also my estate planning. One of the best Real Estate Attorneys in the area!!!”</blockquote>
-              <figcaption>Dave G.<span>Source: Avvo</span></figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <blockquote>“Excellent job by Chad Meredith and Lisa Wingo. Would highly recommend using them to set up an LLC or for a real estate transaction. They were professional, responsive, and answered any and all questions we had. Thanks so much for the great work for a smooth transaction!”</blockquote>
-              <figcaption>Jessica N.<span>Source: DelawareLaw.com</span></figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <blockquote>“Always have a great experience with the attorneys at Hudson Jones. Mike Rushe has been a great settlement attorney!”</blockquote>
-              <figcaption>Lydia R.<span>Source: DelawareLaw.com</span></figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <blockquote>“Mr Becker has handled many projects for us. He has prepared our wills, settled real estate purchases, assisted with unclaimed property and advised us on several issues. We have recommended Mr Becker to friends and family, they were completely satisfied with his services as well.”</blockquote>
-              <figcaption>Dayna<span>Source: Avvo</span></figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <blockquote>“I hired him to handle a real estate settlement and he and his office made the process smooth and easy.”</blockquote>
-              <figcaption>Paul<span>Source: Avvo</span></figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <blockquote>“Jay Becker and his team have been outstanding over the years. Jay is a thorough attorney who puts his clients interest first. We have been fortunate enough to send many clients to his office for settlement.”</blockquote>
-              <figcaption>Brian Barrows<span>Source: Lawyer.com</span></figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <blockquote>“I had a great experience with Mike and Melinda they were thorough and completed everything in a timely manner”</blockquote>
-              <figcaption>binita shah<span>Source: Lawyer.com</span></figcaption>
-            </figure>
+          <div class="testimonial-carousel" aria-label="Client testimonials">
+            <div class="testimonial-slide testimonial-grid" data-testimonial-slide>
+              <figure class="testimonial-card testimonial-featured">
+                <blockquote>“We have been using Hudson Jones for real estate closings since we purchased our first property in 1999. The process is always smooth, timely, congenial and meticulous. ... We have 100% confidence in the quality of representation, and highly recommend for all legal needs.”</blockquote>
+                <figcaption>Lyn S.</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Jay Becker is without a doubt the most informative, professional, courteous, results oriented attorney I've ever had the pleasure to deal with. I trust him completely to handle all aspects of my Real Estate transactions and also my estate planning. One of the best Real Estate Attorneys in the area!!!”</blockquote>
+                <figcaption>Dave G.</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Excellent job by Chad Meredith and Lisa Wingo. Would highly recommend using them to set up an LLC or for a real estate transaction. They were professional, responsive, and answered any and all questions we had. Thanks so much for the great work for a smooth transaction!”</blockquote>
+                <figcaption>Jessica N.</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Always have a great experience with the attorneys at Hudson Jones. Mike Rushe has been a great settlement attorney!”</blockquote>
+                <figcaption>Lydia R.</figcaption>
+              </figure>
+            </div>
+            <div class="testimonial-slide testimonial-grid" data-testimonial-slide hidden>
+              <figure class="testimonial-card testimonial-featured">
+                <blockquote>“Mr Becker has handled many projects for us. He has prepared our wills, settled real estate purchases, assisted with unclaimed property and advised us on several issues. We have recommended Mr Becker to friends and family, they were completely satisfied with his services as well.”</blockquote>
+                <figcaption>Dayna</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“I hired him to handle a real estate settlement and he and his office made the process smooth and easy.”</blockquote>
+                <figcaption>Paul</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“Jay Becker and his team have been outstanding over the years. Jay is a thorough attorney who puts his clients interest first. We have been fortunate enough to send many clients to his office for settlement.”</blockquote>
+                <figcaption>Brian Barrows</figcaption>
+              </figure>
+              <figure class="testimonial-card">
+                <blockquote>“I had a great experience with Mike and Melinda they were thorough and completed everything in a timely manner”</blockquote>
+                <figcaption>binita shah</figcaption>
+              </figure>
+            </div>
+            <div class="testimonial-controls">
+              <button class="testimonial-arrow" type="button" data-testimonial-prev aria-label="Show previous testimonials">&#8249;</button>
+              <div class="testimonial-dots" aria-label="Choose testimonial group">
+                <button class="testimonial-dot is-active" type="button" data-testimonial-dot="0" aria-label="Show testimonials 1 through 4" aria-current="true"></button>
+                <button class="testimonial-dot" type="button" data-testimonial-dot="1" aria-label="Show testimonials 5 through 8"></button>
+              </div>
+              <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Show next testimonials">&#8250;</button>
+            </div>
           </div>
           <p class="testimonial-disclaimer">Client testimonials reflect individual experiences and do not guarantee a similar outcome.</p>
         </div>
@@ -174,5 +186,57 @@
       </div>
       <div class="container legal">Attorney Advertising. This website is for general information only and does not create an attorney-client relationship. <a href="./privacy-policy/">Privacy Policy</a></div>
     </footer>
+    <script>
+      (() => {
+        const carousel = document.querySelector(".testimonial-carousel");
+        if (!carousel) return;
+
+        const slides = [...carousel.querySelectorAll("[data-testimonial-slide]")];
+        const dots = [...carousel.querySelectorAll("[data-testimonial-dot]")];
+        const previous = carousel.querySelector("[data-testimonial-prev]");
+        const next = carousel.querySelector("[data-testimonial-next]");
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let activeSlide = 0;
+        let rotation;
+
+        const showSlide = (index) => {
+          activeSlide = (index + slides.length) % slides.length;
+          slides.forEach((slide, slideIndex) => {
+            slide.hidden = slideIndex !== activeSlide;
+          });
+          dots.forEach((dot, dotIndex) => {
+            const isActive = dotIndex === activeSlide;
+            dot.classList.toggle("is-active", isActive);
+            dot.setAttribute("aria-current", isActive ? "true" : "false");
+          });
+        };
+
+        const startRotation = () => {
+          if (reduceMotion) return;
+          window.clearInterval(rotation);
+          rotation = window.setInterval(() => showSlide(activeSlide + 1), 6500);
+        };
+
+        previous.addEventListener("click", () => {
+          showSlide(activeSlide - 1);
+          startRotation();
+        });
+        next.addEventListener("click", () => {
+          showSlide(activeSlide + 1);
+          startRotation();
+        });
+        dots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            showSlide(Number(dot.dataset.testimonialDot));
+            startRotation();
+          });
+        });
+        carousel.addEventListener("mouseenter", () => window.clearInterval(rotation));
+        carousel.addEventListener("mouseleave", startRotation);
+        carousel.addEventListener("focusin", () => window.clearInterval(rotation));
+        carousel.addEventListener("focusout", startRotation);
+        startRotation();
+      })();
+    </script>
   </body>
 </html>
