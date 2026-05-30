@@ -896,6 +896,12 @@ h3 {
   text-transform: uppercase;
 }
 
+.testimonial-disclaimer {
+  margin: 1.1rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
 .side-panel {
   position: sticky;
   top: 1rem;
