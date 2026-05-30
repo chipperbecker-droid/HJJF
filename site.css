@@ -843,24 +843,22 @@ h3 {
 }
 
 .testimonial-viewport {
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
   cursor: grab;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-  scroll-snap-type: x proximity;
   touch-action: pan-y;
   user-select: none;
-}
-
-.testimonial-viewport::-webkit-scrollbar {
-  display: none;
 }
 
 .testimonial-track {
   display: flex;
   gap: 1rem;
   align-items: stretch;
+  transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.testimonial-track.is-dragging {
+  transition: none;
 }
 
 .testimonial-viewport:active {
@@ -878,7 +876,6 @@ h3 {
   border-radius: var(--radius);
   background: #fff;
   box-shadow: 0 10px 30px rgba(23, 32, 43, 0.06);
-  scroll-snap-align: start;
 }
 
 .testimonial-card blockquote {

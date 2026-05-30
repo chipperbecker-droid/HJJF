@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
     <link rel="stylesheet" href="./site.css?v=20260530-1">
     <style>
-      .testimonial-viewport { overflow-x: auto; overflow-y: hidden; }
+      .testimonial-viewport { overflow: hidden; }
       .testimonial-track { display: flex; gap: 1rem; }
       .testimonial-track .testimonial-card { flex: 0 0 calc((100% - 2rem) / 3); }
       @media (max-width: 900px) {
@@ -243,41 +243,27 @@
         let activePage = 0;
         let pageCount = 1;
         let cardsPerPage = 3;
-        let cloneCount = 3;
+        let maxCard = 0;
+        let offset = 0;
         let rotation;
-        let scrollTimer;
-        let mouseStartX = 0;
-        let mouseStartScroll = 0;
-        let isMouseDragging = false;
-        let isSettling = false;
+        let autoplayDirection = 1;
+        let wheelTimer;
+        let pointerId;
+        let dragStartX = 0;
+        let dragStartOffset = 0;
+        let lastPointerX = 0;
+        let lastPointerTime = 0;
+        let dragVelocity = 0;
+        let isDragging = false;
 
-        const getCardOffset = (index) => track.children[index].offsetLeft;
+        const clamp = (value, minimum, maximum) => Math.min(Math.max(value, minimum), maximum);
+        const getCardStep = () => cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : viewport.clientWidth;
+        const getMaxOffset = () => maxCard * getCardStep();
 
-        const scrollToCard = (index, smooth = true) => {
-          viewport.scrollTo({
-            left: getCardOffset(index),
-            behavior: smooth && !reduceMotion ? "smooth" : "auto"
-          });
-        };
-
-        const settleCarousel = (smooth = true) => {
-          if (isSettling) return;
-          const cardWidth = track.children[1].offsetLeft - track.children[0].offsetLeft;
-          let physicalCard = Math.round(viewport.scrollLeft / cardWidth);
-          if (physicalCard < cloneCount) {
-            physicalCard += cards.length;
-            scrollToCard(physicalCard, false);
-          } else if (physicalCard >= cloneCount + cards.length) {
-            physicalCard -= cards.length;
-            scrollToCard(physicalCard, false);
-          }
-          activeCard = (physicalCard - cloneCount + cards.length) % cards.length;
-          updateControls();
-          isSettling = true;
-          scrollToCard(physicalCard, smooth);
-          window.setTimeout(() => {
-            isSettling = false;
-          }, smooth && !reduceMotion ? 360 : 0);
+        const renderOffset = (value, animate = true) => {
+          offset = clamp(value, 0, getMaxOffset());
+          track.classList.toggle("is-dragging", !animate);
+          track.style.transform = `translate3d(-${offset}px, 0, 0)`;
         };
 
         const getCardsPerPage = () => {
@@ -296,33 +282,25 @@
           });
         };
 
-        const moveCards = (amount) => {
-          activeCard = (activeCard + amount + cards.length) % cards.length;
+        const goToCard = (index, animate = true) => {
+          activeCard = clamp(Math.round(index), 0, maxCard);
           updateControls();
-          scrollToCard(cloneCount + activeCard);
+          renderOffset(activeCard * getCardStep(), animate);
         };
 
         const showPage = (index) => {
-          activeCard = Math.min(index * cardsPerPage, cards.length - 1);
-          updateControls();
-          scrollToCard(cloneCount + activeCard);
+          goToCard(index * cardsPerPage);
+        };
+
+        const settleCarousel = (projectedOffset = offset) => {
+          goToCard(Math.round(clamp(projectedOffset, 0, getMaxOffset()) / getCardStep()));
         };
 
         const buildDots = () => {
           cardsPerPage = getCardsPerPage();
-          cloneCount = cardsPerPage;
-          pageCount = Math.ceil(cards.length / cardsPerPage);
-          track.querySelectorAll("[data-testimonial-clone]").forEach((card) => card.remove());
-          cards.slice(-cloneCount).reverse().forEach((card) => {
-            const clone = card.cloneNode(true);
-            clone.dataset.testimonialClone = "true";
-            track.prepend(clone);
-          });
-          cards.slice(0, cloneCount).forEach((card) => {
-            const clone = card.cloneNode(true);
-            clone.dataset.testimonialClone = "true";
-            track.append(clone);
-          });
+          maxCard = Math.max(0, cards.length - cardsPerPage);
+          pageCount = Math.ceil((maxCard + 1) / cardsPerPage);
+          activeCard = clamp(activeCard, 0, maxCard);
           dotsContainer.replaceChildren();
           for (let index = 0; index < pageCount; index += 1) {
             const dot = document.createElement("button");
@@ -336,21 +314,27 @@
             dotsContainer.append(dot);
           }
           updateControls();
-          scrollToCard(cloneCount + activeCard, false);
+          renderOffset(activeCard * getCardStep(), false);
+          track.getBoundingClientRect();
+          track.classList.remove("is-dragging");
         };
 
         const startRotation = () => {
           if (reduceMotion) return;
           window.clearInterval(rotation);
-          rotation = window.setInterval(() => moveCards(1), 7000);
+          rotation = window.setInterval(() => {
+            if (activeCard >= maxCard) autoplayDirection = -1;
+            if (activeCard <= 0) autoplayDirection = 1;
+            goToCard(activeCard + autoplayDirection);
+          }, 7000);
         };
 
         previous.addEventListener("click", () => {
-          moveCards(-1);
+          goToCard(activeCard - 1);
           startRotation();
         });
         next.addEventListener("click", () => {
-          moveCards(1);
+          goToCard(activeCard + 1);
           startRotation();
         });
         carousel.addEventListener("mouseenter", () => window.clearInterval(rotation));
@@ -358,36 +342,50 @@
         carousel.addEventListener("focusin", () => window.clearInterval(rotation));
         carousel.addEventListener("focusout", startRotation);
         viewport.addEventListener("pointerdown", (event) => {
-          if (event.pointerType !== "mouse" || event.button !== 0) return;
-          event.preventDefault();
-          isMouseDragging = true;
-          mouseStartX = event.clientX;
-          mouseStartScroll = viewport.scrollLeft;
+          if (event.pointerType === "mouse" && event.button !== 0) return;
+          if (event.pointerType === "mouse") event.preventDefault();
+          pointerId = event.pointerId;
+          isDragging = true;
+          dragStartX = event.clientX;
+          dragStartOffset = offset;
+          lastPointerX = event.clientX;
+          lastPointerTime = event.timeStamp;
+          dragVelocity = 0;
+          track.classList.add("is-dragging");
           viewport.setPointerCapture(event.pointerId);
           window.clearInterval(rotation);
         });
         viewport.addEventListener("pointermove", (event) => {
-          if (!isMouseDragging) return;
-          viewport.scrollLeft = mouseStartScroll - (event.clientX - mouseStartX);
+          if (!isDragging || event.pointerId !== pointerId) return;
+          const elapsed = Math.max(event.timeStamp - lastPointerTime, 1);
+          dragVelocity = (lastPointerX - event.clientX) / elapsed;
+          lastPointerX = event.clientX;
+          lastPointerTime = event.timeStamp;
+          renderOffset(dragStartOffset + dragStartX - event.clientX, false);
         });
         viewport.addEventListener("pointerup", (event) => {
-          if (!isMouseDragging) return;
-          isMouseDragging = false;
+          if (!isDragging || event.pointerId !== pointerId) return;
+          isDragging = false;
           viewport.releasePointerCapture(event.pointerId);
-          settleCarousel();
+          settleCarousel(offset + dragVelocity * 180);
           startRotation();
         });
         viewport.addEventListener("pointercancel", () => {
-          isMouseDragging = false;
+          isDragging = false;
           settleCarousel();
           startRotation();
         });
-        viewport.addEventListener("scroll", () => {
-          window.clearTimeout(scrollTimer);
-          scrollTimer = window.setTimeout(() => {
-            if (!isMouseDragging) settleCarousel();
+        viewport.addEventListener("wheel", (event) => {
+          if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+          event.preventDefault();
+          window.clearInterval(rotation);
+          renderOffset(offset + event.deltaX, false);
+          window.clearTimeout(wheelTimer);
+          wheelTimer = window.setTimeout(() => {
+            settleCarousel();
+            startRotation();
           }, 120);
-        });
+        }, { passive: false });
         window.addEventListener("resize", buildDots);
         buildDots();
         startRotation();
