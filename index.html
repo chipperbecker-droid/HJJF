@@ -296,6 +296,30 @@
           goToCard(Math.round(clamp(projectedOffset, 0, getMaxOffset()) / getCardStep()));
         };
 
+        const endDrag = (event, canceled = false) => {
+          if (!isDragging) return;
+          if (event?.pointerId !== undefined && event.pointerId !== pointerId) return;
+          const releasedPointerId = pointerId;
+          isDragging = false;
+          pointerId = undefined;
+          track.classList.remove("is-dragging");
+          if (releasedPointerId !== undefined && viewport.hasPointerCapture?.(releasedPointerId)) {
+            viewport.releasePointerCapture(releasedPointerId);
+          }
+          settleCarousel(canceled ? offset : offset + dragVelocity * 180);
+          startRotation();
+        };
+        const cancelDrag = (event) => endDrag(event, true);
+        const handleWindowBlur = () => endDrag(undefined, true);
+        const removeDragFallbacks = () => {
+          window.removeEventListener("pointerup", endDrag);
+          window.removeEventListener("pointercancel", cancelDrag);
+          window.removeEventListener("mouseup", endDrag);
+          window.removeEventListener("touchend", endDrag);
+          window.removeEventListener("touchcancel", cancelDrag);
+          window.removeEventListener("blur", handleWindowBlur);
+        };
+
         const buildDots = () => {
           cardsPerPage = getCardsPerPage();
           maxCard = Math.max(0, cards.length - cardsPerPage);
@@ -352,7 +376,7 @@
           lastPointerTime = event.timeStamp;
           dragVelocity = 0;
           track.classList.add("is-dragging");
-          viewport.setPointerCapture(event.pointerId);
+          viewport.setPointerCapture?.(event.pointerId);
           window.clearInterval(rotation);
         });
         viewport.addEventListener("pointermove", (event) => {
@@ -364,17 +388,21 @@
           renderOffset(dragStartOffset + dragStartX - event.clientX, false);
         });
         viewport.addEventListener("pointerup", (event) => {
-          if (!isDragging || event.pointerId !== pointerId) return;
-          isDragging = false;
-          viewport.releasePointerCapture(event.pointerId);
-          settleCarousel(offset + dragVelocity * 180);
-          startRotation();
+          endDrag(event);
         });
-        viewport.addEventListener("pointercancel", () => {
-          isDragging = false;
-          settleCarousel();
-          startRotation();
+        viewport.addEventListener("pointercancel", (event) => {
+          endDrag(event, true);
         });
+        viewport.addEventListener("lostpointercapture", (event) => {
+          endDrag(event);
+        });
+        window.addEventListener("pointerup", endDrag);
+        window.addEventListener("pointercancel", cancelDrag);
+        window.addEventListener("mouseup", endDrag);
+        window.addEventListener("touchend", endDrag);
+        window.addEventListener("touchcancel", cancelDrag);
+        window.addEventListener("blur", handleWindowBlur);
+        window.addEventListener("pagehide", removeDragFallbacks, { once: true });
         viewport.addEventListener("wheel", (event) => {
           if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
           event.preventDefault();
