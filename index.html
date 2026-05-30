@@ -129,11 +129,11 @@
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“Jay Becker and his team have been outstanding over the years. Jay is a thorough attorney who puts his clients interest first. We have been fortunate enough to send many clients to his office for settlement.”</blockquote>
-                <figcaption>Brian Barrows</figcaption>
+                <figcaption>Brian B.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“I had a great experience with Mike and Melinda they were thorough and completed everything in a timely manner”</blockquote>
-                <figcaption>binita shah</figcaption>
+                <figcaption>Binita S.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“I have worked with Mike Rushe and Angelica Mamani and both attorneys have been fantastic! The support staff has been top notch as well (Linda….you’re the best!!!!!!)”</blockquote>
@@ -149,7 +149,7 @@
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“I have been working with Hudson Jones Jaywork and Fisher for 20 years for real estate closings. Year in year out they always provide a smooth transaction and expert knowledge.”</blockquote>
-                <figcaption>Pete Green Mortgage</figcaption>
+                <figcaption>Pete G.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“I've counted on Mike for several years to handle all of my legal needs. Running a mortgage company, I have interactions with many attorneys every month. Mike sets himself apart from other attorneys by being accessible, responsive, and gives me the same advise and effort as if I am family.”</blockquote>
@@ -157,31 +157,31 @@
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“As a local Real Estate broker who uses multiple attorneys locally, I would have to say this firm is loaded with professionals that get the job done in a timely and professional fashion. I have also used Mike Rushe for litigation and seen him perform in court and have been very impressed.”</blockquote>
-                <figcaption>John Welcome</figcaption>
+                <figcaption>John W.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“Had a great experience working with Chad Meredith. He provided excellent service, great advice and was able to work well with the Rehoboth City government. I highly recommend him for both his skill set, local savvy, and people skills.”</blockquote>
-                <figcaption>Edward Bieber</figcaption>
+                <figcaption>Edward B.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“Chad Meredith at Hudson Jones recently worked with me with a settlement at their Rehoboth Beach office. Also, Chad to the time to provide me valuable legal advice regarding the pros and cons between LLCs, joint tenancy with my adult children or single tenancy. Lisa Wingo is very knowledgeable about Delaware laws regarding settlement and everyone in the office was wonderful. I highly recommend Hudson Jones to anyone who is buying a house in Delaware.”</blockquote>
-                <figcaption>Mary Parvis</figcaption>
+                <figcaption>Mary P.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“Michael Rushe and all of the staff are very helpful and knowledgeable.”</blockquote>
-                <figcaption>Andy Ryan</figcaption>
+                <figcaption>Andy R.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“From start to finish, our experience with Hudson-Jones was professional, efficient, and pain-free. We’ve handled several real estate settlements at this firm over the past 20 years and each case has been a positive experience.”</blockquote>
-                <figcaption>James Johnson</figcaption>
+                <figcaption>James J.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“Always very efficient and get it on time. Definitely recommend”</blockquote>
-                <figcaption>Terrenna Giles Brown</figcaption>
+                <figcaption>Terrenna G.</figcaption>
               </figure>
               <figure class="testimonial-card">
                 <blockquote>“Hudson, Jones, Jaywork, and Fisher always handles my needs with professionalism and expediency. I never hesitate to send a client there because I know everything will be handled right the first time!”</blockquote>
-                <figcaption>Matthew Sliwa</figcaption>
+                <figcaption>Matthew S.</figcaption>
               </figure>
               </div>
             </div>
@@ -192,7 +192,6 @@
               <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Show next testimonials">&#8250;</button>
             </div>
           </div>
-          <p class="testimonial-disclaimer">Client testimonials reflect individual experiences and do not guarantee a similar outcome.</p>
         </div>
       </section>
       <section class="section dark">
@@ -260,6 +259,14 @@
         let pageCount = 1;
         let cardsPerPage = 3;
         let rotation;
+        let dragStartX = 0;
+        let dragOffset = 0;
+        let isDragging = false;
+
+        const getPageOffset = (index) => {
+          const targetCard = cards[index * cardsPerPage];
+          return Math.min(targetCard.offsetLeft, track.scrollWidth - viewport.clientWidth);
+        };
 
         const getCardsPerPage = () => {
           if (window.innerWidth <= 620) return 1;
@@ -269,8 +276,7 @@
 
         const showPage = (index) => {
           activePage = (index + pageCount) % pageCount;
-          const targetCard = cards[activePage * cardsPerPage];
-          const offset = Math.min(targetCard.offsetLeft, track.scrollWidth - viewport.clientWidth);
+          const offset = getPageOffset(activePage);
           track.style.transform = `translateX(-${offset}px)`;
           counter.textContent = `${activePage + 1} / ${pageCount}`;
           [...dotsContainer.children].forEach((dot, dotIndex) => {
@@ -317,6 +323,40 @@
         carousel.addEventListener("mouseleave", startRotation);
         carousel.addEventListener("focusin", () => window.clearInterval(rotation));
         carousel.addEventListener("focusout", startRotation);
+        viewport.addEventListener("pointerdown", (event) => {
+          if (event.pointerType === "mouse" && event.button !== 0) return;
+          isDragging = true;
+          dragStartX = event.clientX;
+          dragOffset = getPageOffset(activePage);
+          track.classList.add("is-dragging");
+          viewport.setPointerCapture(event.pointerId);
+          window.clearInterval(rotation);
+        });
+        viewport.addEventListener("pointermove", (event) => {
+          if (!isDragging) return;
+          const movement = event.clientX - dragStartX;
+          track.style.transform = `translateX(${movement - dragOffset}px)`;
+        });
+        viewport.addEventListener("pointerup", (event) => {
+          if (!isDragging) return;
+          const movement = event.clientX - dragStartX;
+          isDragging = false;
+          track.classList.remove("is-dragging");
+          viewport.releasePointerCapture(event.pointerId);
+          if (Math.abs(movement) > 60) {
+            showPage(activePage + (movement < 0 ? 1 : -1));
+          } else {
+            showPage(activePage);
+          }
+          startRotation();
+        });
+        viewport.addEventListener("pointercancel", () => {
+          if (!isDragging) return;
+          isDragging = false;
+          track.classList.remove("is-dragging");
+          showPage(activePage);
+          startRotation();
+        });
         window.addEventListener("resize", buildDots);
         buildDots();
         startRotation();
