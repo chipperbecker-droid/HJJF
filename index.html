@@ -12,7 +12,18 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="./assets/favicon.png">
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="./site.css?v=20260528-2">
+    <link rel="stylesheet" href="./site.css?v=20260530-1">
+    <style>
+      .testimonial-viewport { overflow: hidden; }
+      .testimonial-track { display: flex; gap: 1rem; }
+      .testimonial-track .testimonial-card { flex: 0 0 calc((100% - 2rem) / 3); }
+      @media (max-width: 900px) {
+        .testimonial-track .testimonial-card { flex-basis: calc((100% - 1rem) / 2); }
+      }
+      @media (max-width: 620px) {
+        .testimonial-track .testimonial-card { flex-basis: 100%; }
+      }
+    </style>
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["LegalService","Organization"],"@id":"https://www.delawarelaw.com/#organization","name":"Hudson, Jones, Jaywork & Fisher, LLC","url":"https://www.delawarelaw.com/","telephone":"+1-302-734-7401","email":"info@delawarelaw.com","foundingDate":"1975","areaServed":{"@type":"State","name":"Delaware"},"address":[{"@type":"PostalAddress","streetAddress":"225 South State Street","addressLocality":"Dover","addressRegion":"DE","postalCode":"19901","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"309 Rehoboth Avenue","addressLocality":"Rehoboth Beach","addressRegion":"DE","postalCode":"19971","addressCountry":"US"}],"sameAs":["https://www.facebook.com/pages/Hudson-Jones-Jaywork-Fisher/480679735327761"],"logo":"https://www.delawarelaw.com/assets/logo-balanced.png"},{"@type":"WebSite","@id":"https://www.delawarelaw.com/#website","url":"https://www.delawarelaw.com/","name":"Hudson, Jones, Jaywork & Fisher, LLC","publisher":{"@id":"https://www.delawarelaw.com/#organization"},"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.delawarelaw.com/#webpage","url":"https://www.delawarelaw.com/","name":"Delaware Law Firm | Hudson, Jones, Jaywork & Fisher","description":"Hudson, Jones, Jaywork & Fisher is a Delaware law firm serving individuals, families, businesses, property owners, associations, and governmental entities from offices in Dover and Rehoboth Beach.","isPartOf":{"@id":"https://www.delawarelaw.com/#website"},"about":{"@id":"https://www.delawarelaw.com/#organization"},"inLanguage":"en-US"}]}</script>
   </head>
   <body>
