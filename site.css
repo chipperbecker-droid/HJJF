@@ -663,7 +663,7 @@ h3 {
 
 .office-attorneys-list a,
 .office-services-list a,
-.office-services-list span {
+.office-service-card {
   display: flex;
   min-height: 72px;
   align-items: center;
