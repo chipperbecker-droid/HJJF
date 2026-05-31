@@ -662,7 +662,8 @@ h3 {
 }
 
 .office-attorneys-list a,
-.office-services-list a {
+.office-services-list a,
+.office-services-list span {
   display: flex;
   min-height: 72px;
   align-items: center;
@@ -677,6 +678,10 @@ h3 {
   font-weight: 700;
   line-height: 1.1;
   text-decoration: none;
+}
+
+.office-attorneys-list a,
+.office-services-list a {
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
