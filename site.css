@@ -691,17 +691,6 @@ h3 {
   margin-top: 1.6rem;
 }
 
-.office-services-inner .section-head {
-  max-width: none;
-  margin-bottom: 1.25rem;
-}
-
-.office-services-inner .section-head p {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 1.03rem;
-}
-
 .office-contact-list {
   display: grid;
   gap: 1.4rem;
