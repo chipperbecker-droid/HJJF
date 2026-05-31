@@ -630,10 +630,9 @@ h3 {
 .office-attorneys-callout {
   padding: 1.6rem;
   margin: 1.6rem 0 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   background: var(--surface);
-  box-shadow: 0 10px 30px rgba(23, 32, 43, 0.06);
 }
 
 .office-attorneys-callout h2 {
