@@ -628,15 +628,15 @@ h3 {
 }
 
 .office-attorneys-callout {
-  margin: 1.6rem 0 0.8rem;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
+  margin-top: 1.6rem;
 }
 
 .office-attorneys-inner {
-  padding-top: 1.6rem;
-  padding-bottom: 1.6rem;
+  padding: 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgba(23, 32, 43, 0.06);
 }
 
 .office-attorneys-callout h2 {
