@@ -627,6 +627,52 @@ h3 {
   border-color: var(--blue);
 }
 
+.office-attorneys-callout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.6rem;
+  margin-top: 1.3rem;
+  color: #fff;
+  border: 1px solid var(--green-2);
+  border-radius: var(--radius);
+  background: var(--green);
+  box-shadow: 0 16px 42px rgba(23, 32, 43, 0.16);
+}
+
+.office-attorneys-callout h2 {
+  color: #fff;
+  font-size: clamp(2rem, 3.3vw, 2.8rem);
+}
+
+.office-attorneys-callout .eyebrow {
+  color: var(--gold);
+}
+
+.office-attorneys-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.office-attorneys-list a {
+  padding: 0.75rem 0.85rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 800;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.office-attorneys-list a:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.16);
+}
+
 .office-contact-list {
   display: grid;
   gap: 1.4rem;
@@ -1128,6 +1174,7 @@ h3 {
   .split,
   .attorney-bridge,
   .content-grid,
+  .office-attorneys-callout,
   .cta-grid,
   .office-contact-section,
   .footer-grid {
@@ -1187,6 +1234,10 @@ h3 {
 
   .card-grid,
   .card-grid.people {
+    grid-template-columns: 1fr;
+  }
+
+  .office-attorneys-list {
     grid-template-columns: 1fr;
   }
 
