@@ -629,7 +629,7 @@ h3 {
 
 .office-attorneys-callout {
   padding: 1.6rem;
-  margin-top: 1.3rem;
+  margin: 1.6rem 0 0.8rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -637,27 +637,45 @@ h3 {
 }
 
 .office-attorneys-callout h2 {
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
   font-size: 2rem;
 }
 
 .office-attorneys-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
   margin: 0;
-  padding-left: 1.35rem;
+  padding: 0;
+  list-style: none;
 }
 
 .office-attorneys-list li {
-  margin-bottom: 0.45rem;
-  color: var(--gold-dark);
-}
-
-.office-attorneys-list li:last-child {
-  margin-bottom: 0;
+  min-width: 0;
 }
 
 .office-attorneys-list a {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  padding: 0.9rem 1rem;
   color: var(--ink);
-  font-weight: 800;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 6px 18px rgba(23, 32, 43, 0.05);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.office-attorneys-list a:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 42px rgba(23, 32, 43, 0.12);
 }
 
 .office-contact-list {
@@ -1168,7 +1186,8 @@ h3 {
   }
 
   .card-grid,
-  .card-grid.people {
+  .card-grid.people,
+  .office-attorneys-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1219,7 +1238,8 @@ h3 {
   }
 
   .card-grid,
-  .card-grid.people {
+  .card-grid.people,
+  .office-attorneys-list {
     grid-template-columns: 1fr;
   }
 
