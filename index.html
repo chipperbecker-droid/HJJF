@@ -67,7 +67,7 @@
         </div>
         
         <aside class="hero-card">
-          <strong>Since 1956</strong><span>serving Delaware clients</span>
+          <strong data-years-serving>70 years</strong><span>serving Delaware clients</span>
           <strong>2 offices</strong><span>Dover and Rehoboth Beach</span>
           <strong>Full service</strong><span>legal counsel for people, property, businesses, and governmental entities</span>
         </aside>
@@ -228,6 +228,14 @@
       <div class="container legal">Attorney Advertising. This website is for general information only and does not create an attorney-client relationship. <a href="./privacy-policy/">Privacy Policy</a></div>
     </footer>
     <script>
+      (() => {
+        const yearsServing = document.querySelector("[data-years-serving]");
+        if (!yearsServing) return;
+
+        const years = new Date().getFullYear() - 1956;
+        yearsServing.textContent = `${years} years`;
+      })();
+
       (() => {
         const carousel = document.querySelector(".testimonial-carousel");
         if (!carousel) return;
