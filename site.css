@@ -631,7 +631,8 @@ h3 {
   margin-top: 1.6rem;
 }
 
-.office-attorneys-inner {
+.office-attorneys-inner,
+.office-services-inner {
   padding: 1.6rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -676,6 +677,57 @@ h3 {
 }
 
 .office-attorneys-list a:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 42px rgba(23, 32, 43, 0.12);
+}
+
+.office-services-callout {
+  margin-top: 1.6rem;
+}
+
+.office-services-inner .section-head {
+  margin-bottom: 1.25rem;
+}
+
+.office-services-inner .section-head p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: 1.03rem;
+}
+
+.office-services-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.office-services-list li {
+  min-width: 0;
+}
+
+.office-services-list a {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 6px 18px rgba(23, 32, 43, 0.05);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.office-services-list a:hover {
   border-color: var(--gold);
   transform: translateY(-3px);
   box-shadow: 0 16px 42px rgba(23, 32, 43, 0.12);
@@ -1190,7 +1242,8 @@ h3 {
 
   .card-grid,
   .card-grid.people,
-  .office-attorneys-list {
+  .office-attorneys-list,
+  .office-services-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1242,7 +1295,8 @@ h3 {
 
   .card-grid,
   .card-grid.people,
-  .office-attorneys-list {
+  .office-attorneys-list,
+  .office-services-list {
     grid-template-columns: 1fr;
   }
 
