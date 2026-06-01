@@ -76,6 +76,9 @@ External links such as Google Maps, Facebook, and official Delaware resource lin
 
 ## Maintenance Notes
 
+- Keep the HTML formatted for people to read. Each page is a standalone file, and shared visual rules belong in `site.css`.
+- When page copy changes, review the matching description, Open Graph tags, Twitter tags, and JSON-LD block in that page's `<head>` so search and social previews stay accurate.
+- Where an image has a WebP version, keep the `<picture>` element: the WebP `<source>` improves load time and the original `<img>` remains the fallback.
 - Individual attorney email values are intentionally omitted from attorney bio pages. Use the generic firm email, `info@delawarelaw.com`, for public contact points unless attorney-specific publication preferences change.
 - The Careers page should direct submissions to `info@delawarelaw.com`.
 - The Real Estate practice-area image uses `assets/real-estate-closing.jpg`. The older `assets/real-estate.jpg` file is retained in the asset folder but should not be used for current Real Estate page/card imagery.
