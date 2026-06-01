@@ -1082,6 +1082,15 @@ h3 {
   justify-content: center;
 }
 
+.footer-review-link {
+  color: var(--gold) !important;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-underline-offset: 0.25rem;
+}
+
 .footer-pill {
   display: inline-flex;
   min-height: 42px;
