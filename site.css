@@ -33,10 +33,18 @@ body {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 a {
   color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
 
 .skip-link {
@@ -1165,6 +1173,22 @@ h3 {
     gap: 5px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
+  }
+
+  .menu-toggle {
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .menu-toggle:focus-visible + .menu-button {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
   }
 
   .menu-button span {
