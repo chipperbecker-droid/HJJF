@@ -1,0 +1,51 @@
+old_url,new_url,status,confidence,notes
+https://delawarelaw.com/,https://www.delawarelaw.com/,301,high,Homepage.
+https://delawarelaw.com/practice-areas/,https://www.delawarelaw.com/practice-areas/,301,high,Practice-area directory exists on new site.
+https://delawarelaw.com/clients/,https://www.delawarelaw.com/about/,301,medium,No client page on new site; about page is closest general firm page. Confirm.
+https://delawarelaw.com/our-firm/,https://www.delawarelaw.com/about/,301,medium,No our-firm page on new site; about page is closest replacement.
+https://delawarelaw.com/careers/,https://www.delawarelaw.com/careers/,301,high,Careers page exists on new site.
+https://delawarelaw.com/honnors-and-awards/,https://www.delawarelaw.com/about/,301,low,Old slug appears misspelled and has no direct replacement. Confirm destination.
+https://delawarelaw.com/news/,https://www.delawarelaw.com/,301,low,No news page on new site. Confirm whether to redirect home or create/archive news.
+https://delawarelaw.com/case-results/,,410,medium,No case-results page on new site; returning gone may be preferable to redirecting legal outcome content. Attorney review recommended.
+https://delawarelaw.com/shop/,,410,medium,Old WooCommerce page has no replacement and should not remain indexed.
+https://delawarelaw.com/cart/,,410,medium,Old WooCommerce page has no replacement and should not remain indexed.
+https://delawarelaw.com/checkout/,,410,medium,Old WooCommerce page has no replacement and should not remain indexed.
+https://delawarelaw.com/my-account/,,410,medium,Old WooCommerce account page has no replacement and should not remain indexed.
+https://delawarelaw.com/wishlist/,,410,medium,Old WooCommerce page has no replacement and should not remain indexed.
+https://delawarelaw.com/ronald-d-smith/,https://www.delawarelaw.com/attorneys/,301,low,No current Ronald D. Smith profile. Confirm whether to redirect to attorneys or return gone.
+https://delawarelaw.com/privacy-policy-2/,https://www.delawarelaw.com/privacy-policy/,301,high,New privacy-policy page exists.
+https://delawarelaw.com/christopher-m-holmon/,https://www.delawarelaw.com/christopher-m-holmon/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/practice-areas/medical-malpractice/,https://www.delawarelaw.com/practice-areas/personal-injury/,301,medium,No direct new medical-malpractice page; personal injury is closest current section. Confirm.
+https://delawarelaw.com/links-and-resources/,https://www.delawarelaw.com/links-and-resources/,301,high,Resources page exists on new site.
+https://delawarelaw.com/d-barrett-edwards-iv/,https://www.delawarelaw.com/d-barrett-edwards-iv/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/richard-e-berl-jr/,https://www.delawarelaw.com/richard-e-berl-jr/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/about/,https://www.delawarelaw.com/about/,301,high,About page exists on new site.
+https://delawarelaw.com/rehoboth-office/,https://www.delawarelaw.com/rehoboth-office/,301,high,Office page exists on new site.
+https://delawarelaw.com/faq/,https://www.delawarelaw.com/links-and-resources/,301,high,FAQ content is now combined into FAQ & Resources.
+https://delawarelaw.com/practice-areas/condos-homeowners-associations/,https://www.delawarelaw.com/practice-areas/condominium-homeowners-association-law/,301,high,New site uses expanded condominium/HOA slug.
+https://delawarelaw.com/practice-areas/bankruptcy/,https://www.delawarelaw.com/practice-areas/,301,low,No bankruptcy practice page on new site. Confirm whether to create a page or redirect to practice-area directory.
+https://delawarelaw.com/practice-areas/business-law/,https://www.delawarelaw.com/practice-areas/business-law/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/civil-litigation/,https://www.delawarelaw.com/practice-areas/civil-litigation/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/employment-law/,https://www.delawarelaw.com/practice-areas/business-law/,301,low,No employment-law page on new site; business law may be closest. Confirm.
+https://delawarelaw.com/practice-areas/corporations-llcs/,https://www.delawarelaw.com/practice-areas/corporations-llcs/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/domestic-law/,https://www.delawarelaw.com/practice-areas/domestic-law/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/landlord-tenant-law/,https://www.delawarelaw.com/practice-areas/landlord-tenant-law/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/municipal-law/,https://www.delawarelaw.com/practice-areas/municipal-law/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/personal-injury/,https://www.delawarelaw.com/practice-areas/personal-injury/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/real-estate/,https://www.delawarelaw.com/practice-areas/real-estate/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/trusts-wills-estates/,https://www.delawarelaw.com/practice-areas/trusts-wills-estates/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/practice-areas/wrongful-death/,https://www.delawarelaw.com/practice-areas/personal-injury/,301,medium,No direct new wrongful-death page; personal injury is closest current section. Confirm.
+https://delawarelaw.com/practice-areas/zoning-subdivision/,https://www.delawarelaw.com/practice-areas/zoning-subdivision/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/michael-g-rushe/,https://www.delawarelaw.com/michael-g-rushe/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/practice-areas/criminal-law/,https://www.delawarelaw.com/practice-areas/criminal-law/,301,high,Practice-area page exists on new site.
+https://delawarelaw.com/katrina-k-doran/,https://www.delawarelaw.com/katrina-k-doran/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/robert-v-witsil-jr/,https://www.delawarelaw.com/robert-v-witsil-jr/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/fred-a-townsend-iii/,https://www.delawarelaw.com/fred-a-townsend-iii/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/authorized-policy/,https://www.delawarelaw.com/privacy-policy/,301,low,No authorized-policy page on new site; privacy policy may be closest. Confirm.
+https://delawarelaw.com/chad-c-meredith/,https://www.delawarelaw.com/chad-c-meredith/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/contact-us/,https://www.delawarelaw.com/contact-us/,301,high,Contact page exists on new site.
+https://delawarelaw.com/angelica-m-mamani/,https://www.delawarelaw.com/angelica-m-mamani/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/james-pahl-becker/,https://www.delawarelaw.com/james-pahl-becker/,301,high,Attorney profile exists on new site.
+https://delawarelaw.com/attorneys/,https://www.delawarelaw.com/attorneys/,301,high,Attorney directory exists on new site.
+https://delawarelaw.com/dover-office/,https://www.delawarelaw.com/dover-office/,301,high,Office page exists on new site.
+https://delawarelaw.com/daniel-patrick-myers-ii/,https://www.delawarelaw.com/daniel-patrick-myers-ii/,301,high,Attorney profile exists on new site.
