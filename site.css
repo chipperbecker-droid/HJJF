@@ -1328,3 +1328,112 @@ h3 {
     padding: 62px 0;
   }
 }
+
+/* Attorney directory (matches live site, October 2026) */
+.directory-intro {
+  max-width: 760px;
+  margin-bottom: 40px;
+}
+.directory-intro h2 {
+  font-size: clamp(32px, 3vw, 44px);
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+.directory-person {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 32px;
+  border-top: 1px solid #ddd4c7;
+  padding: 32px 0;
+  align-items: start;
+}
+.directory-portrait {
+  display: block;
+  width: 112px;
+}
+.directory-portrait img {
+  display: block;
+  width: 112px;
+  height: auto;
+  max-width: 100%;
+  border-radius: 4px;
+}
+.directory-details {
+  max-width: 780px;
+}
+.directory-person h2 {
+  font-size: clamp(28px, 2.3vw, 36px);
+  line-height: 1.2;
+  margin: 8px 0 8px;
+  padding: 0;
+}
+.directory-person h2 a {
+  color: #17202b;
+  text-decoration: none;
+}
+.directory-person h2 a:hover {
+  text-decoration: underline;
+}
+.directory-office,
+.directory-title {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+.directory-title {
+  color: #425066;
+}
+.practice-summary {
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 16px 0;
+  padding: 0;
+}
+.directory-practices {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0 24px;
+  margin: 0 0 12px;
+  padding: 0;
+}
+.directory-practices li {
+  margin: 0;
+  padding: 0;
+}
+.directory-practices a,
+.directory-profile,
+.directory-office a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #173f39;
+  text-underline-offset: 3px;
+}
+.directory-profile {
+  font-weight: 700;
+}
+@media (max-width: 620px) {
+  .directory-person {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 20px;
+    padding: 28px 0;
+  }
+  .directory-portrait,
+  .directory-portrait img {
+    width: 80px;
+  }
+  .directory-person h2 {
+    font-size: 28px;
+  }
+  .directory-practices {
+    display: block;
+  }
+  .directory-intro {
+    margin-bottom: 32px;
+  }
+  .directory-profile {
+    font-size: 15px;
+  }
+}
